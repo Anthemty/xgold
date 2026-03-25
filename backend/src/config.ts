@@ -38,8 +38,17 @@ export const config = {
     baseUrl: "https://www.goldapi.io/api",
   },
 
+  api: {
+    get key() {
+      return requireEnv("API_KEY");
+    },
+  },
+
   jobs: {
-    priceSyncIntervalMs: parseInt(optionalEnv("PRICE_SYNC_INTERVAL_MS", "300000"), 10),
+    priceSyncIntervalMs: parseInt(
+      optionalEnv("PRICE_SYNC_INTERVAL_MS", "300000"),
+      10,
+    ),
   },
 
   cors: {
@@ -57,20 +66,25 @@ export const config = {
  * 在 index.ts 最顶部调用，确保服务启动前快速失败
  */
 export function validateConfig(): void {
-  const required = ["SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "GOLD_API_KEY"];
+  const required = [
+    "SUPABASE_URL",
+    "SUPABASE_SERVICE_ROLE_KEY",
+    "GOLD_API_KEY",
+    "API_KEY",
+  ];
 
   const missing = required.filter((key) => !process.env[key]);
 
   if (missing.length > 0) {
     throw new Error(
-      `Missing required environment variables:\n${missing.map((k) => `  - ${k}`).join("\n")}`
+      `Missing required environment variables:\n${missing.map((k) => `  - ${k}`).join("\n")}`,
     );
   }
 
   const intervalMs = config.jobs.priceSyncIntervalMs;
   if (Number.isNaN(intervalMs) || intervalMs < 60000) {
     throw new Error(
-      `PRICE_SYNC_INTERVAL_MS must be a number >= 60000 (1 minute). Got: ${process.env.PRICE_SYNC_INTERVAL_MS}`
+      `PRICE_SYNC_INTERVAL_MS must be a number >= 60000 (1 minute). Got: ${process.env.PRICE_SYNC_INTERVAL_MS}`,
     );
   }
 
