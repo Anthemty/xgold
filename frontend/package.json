@@ -1,0 +1,48 @@
+{
+  "name": "dex-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "biome lint ./",
+    "format": "biome format --write ./",
+    "check": "biome check --write ./",
+    "ci": "biome ci ./"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "@rainbow-me/rainbowkit": "^2.2.9",
+    "@reown/appkit": "^1.8.14",
+    "@reown/appkit-adapter-wagmi": "^1.8.14",
+    "@supabase/supabase-js": "^2.86.2",
+    "@tanstack/react-query": "^5.90.10",
+    "@web3modal/wagmi": "^5.1.11",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.554.0",
+    "next": "16.0.2",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "tailwind-merge": "^3.4.0",
+    "viem": "^2.39.3",
+    "wagmi": "^2.19.4"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.8",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "lightningcss": "^1.21.5",
+    "tailwindcss": "^4",
+    "tailwindcss-animate": "^1.0.7",
+    "tw-animate-css": "^1.4.0",
+    "typescript": "^5"
+  }
+}
