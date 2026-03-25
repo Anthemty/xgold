@@ -134,6 +134,25 @@ INSERT INTO tokens (
   1000000,
   0.003,
   4
+),
+(
+  'USDC', 
+  'USD Coin', 
+  'Fully regulated stablecoin pegged to USD',
+  '/tokens/usdc.svg', 
+  'from-blue-500 to-blue-600',
+  '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+  6,
+  'fixed',
+  NULL,
+  NULL,
+  1.0,
+  true,
+  false,
+  1,
+  1000000,
+  0.003,
+  5
 )
 ON CONFLICT (symbol) DO NOTHING;
 

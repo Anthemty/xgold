@@ -231,6 +231,9 @@ GET https://www.goldapi.io/api/XAU/USD/20241201
 
 Base URL：`http://localhost:4000`
 
+> **访问要求**：所有 `/api/*` 路径需在 HTTP Header 中携带 `X-API-Key`，值与后端 `API_KEY` 配置一致。
+> 示例：`curl -H "X-API-Key: <your-key>" http://localhost:4000/api/market`
+
 ### GET /health
 
 健康检查。
