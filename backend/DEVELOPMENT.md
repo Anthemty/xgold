@@ -35,12 +35,12 @@ backend/
 │   │   ├── tokens.ts         # GET /api/tokens — Token 列表
 │   │   └── metrics.ts        # GET /api/metrics — 平台指标
 │   ├── jobs/
-│   │   ├── index.ts          # 注册并启动所有定时任务
 │   │   └── syncPrices.ts     # 定时拉取价格并写入 Supabase
 │   ├── services/
 │   │   ├── goldapi.ts        # goldapi.io API 封装
 │   │   └── supabase.ts       # Supabase 客户端 + 数据操作
 │   ├── types/
+│   │   ├── database.ts        # Supabase Database 类型（符合 supabase-js v2 泛型约束）
 │   │   └── index.ts          # 全局类型定义
 │   └── config.ts             # 环境变量读取与校验
 ├── .env.example              # 环境变量模板
@@ -494,12 +494,25 @@ HTTP 状态码：
 ## 开发路线图
 
 - [x] 文档
-- [ ] 项目初始化（`package.json`、`tsconfig.json`、`biome.json`）
-- [ ] Hono app 基础结构
-- [ ] Supabase 服务封装
-- [ ] Gold API 服务封装（`src/services/goldapi.ts`）
-- [ ] 定时价格同步任务
-- [ ] REST API 路由实现
-- [ ] Supabase Migration（`market_data`、`price_history`、`platform_metrics`）
-- [ ] Dockerfile
+- [x] 项目初始化（`package.json`、`tsconfig.json`、`biome.json`）
+- [x] Hono app 基础结构
+- [x] Supabase 服务封装
+- [x] Gold API 服务封装（`src/services/goldapi.ts`）
+- [x] 定时价格同步任务
+- [x] REST API 路由实现
+- [x] Supabase Migration（`market_data`、`price_history`、`platform_metrics`）
+- [x] Dockerfile
 - [ ] Dokploy 部署
+
+## Supabase 数据库
+
+已在远端创建的表对应的 Migration 文件位于 `supabase/migrations/`：
+
+| 文件 | 说明 |
+|------|------|
+| `20241212_create_tokens_table.sql` | 初始 `tokens` 表 |
+| `20260325134224_create_market_data_price_history_platform_metrics.sql` | `market_data`、`price_history`、`platform_metrics` 三张表 |
+| `20260325135446_add_missing_columns_to_market_data.sql` | 补充 `ask`、`bid`、`price_gram_24k`、`open_price`、`prev_close_price` 列 |
+| `20260325135846_add_unique_constraint_market_data.sql` | 去重并添加唯一约束（支持 upsert） |
+
+所有 Migration 已通过 `supabase db push` 同步至 Supabase 远端项目 `tqmskmshychajelvhiyc`。
