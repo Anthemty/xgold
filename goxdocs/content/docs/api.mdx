@@ -1,0 +1,678 @@
+---
+title: API Reference
+description: Integrate GOX market data and trading functionality
+---
+
+# API Reference
+
+Access GOX's market data, trading functionality, and real-time updates through our comprehensive API.
+
+## Base URLs
+
+```plaintext
+Production:  https://api.gox.exchange/v1
+Testnet:     https://testnet-api.gox.exchange/v1
+WebSocket:   wss://ws.gox.exchange
+```
+
+## Authentication
+
+Most endpoints are public and require no authentication. For trading endpoints (coming soon), you'll need an API key.
+
+### Getting an API Key (Coming Soon)
+
+1. Connect wallet on GOX
+2. Navigate to **Settings** → **API Keys**
+3. Click **"Generate New Key"**
+4. Save your API key and secret securely
+
+### Authentication Header
+
+```http
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Rate Limits
+
+```plaintext
+Public Endpoints:  100 requests/minute
+Authenticated:     1000 requests/minute
+WebSocket:         Unlimited (10 connections max)
+```
+
+## Market Data Endpoints
+
+### Get Gold Spot Price
+
+Retrieve current gold spot price (XAU/USD).
+
+```http
+GET /market/gold/spot
+```
+
+**Response:**
+
+```json
+{
+  "price_usd": 2645.50,
+  "change_24h": 12.30,
+  "change_pct_24h": 0.47,
+  "high_24h": 2652.80,
+  "low_24h": 2631.20,
+  "market_cap": 13540000000000,
+  "updated_at": "2025-12-11T10:30:00Z"
+}
+```
+
+### Get Token Price
+
+Retrieve current price for gold-backed tokens.
+
+```http
+GET /market/tokens/:symbol
+```
+
+**Parameters:**
+- `symbol` (required): Token symbol (PAXG, XAUT, gXAU)
+
+**Example:**
+
+```http
+GET /market/tokens/PAXG
+```
+
+**Response:**
+
+```json
+{
+  "asset_symbol": "PAXG",
+  "name": "Pax Gold",
+  "price_usd": 2646.12,
+  "change_24h": 13.05,
+  "change_pct_24h": 0.50,
+  "high_24h": 2653.20,
+  "low_24h": 2632.50,
+  "volume_24h": 2847300,
+  "market_cap": 657280000,
+  "circulating_supply": 248472,
+  "holders_count": 12456,
+  "premium_to_spot": 0.04,
+  "updated_at": "2025-12-11T10:30:00Z"
+}
+```
+
+### Get All Tokens
+
+Retrieve prices for all supported tokens.
+
+```http
+GET /market/tokens
+```
+
+**Response:**
+
+```json
+{
+  "data": [
+    {
+      "asset_symbol": "PAXG",
+      "price_usd": 2646.12,
+      "change_pct_24h": 0.50,
+      "volume_24h": 2847300,
+      "market_cap": 657280000
+    },
+    {
+      "asset_symbol": "XAUT",
+      "price_usd": 2644.85,
+      "change_pct_24h": 0.45,
+      "volume_24h": 1653800,
+      "market_cap": 615320000
+    }
+  ],
+  "updated_at": "2025-12-11T10:30:00Z"
+}
+```
+
+### Get Historical Prices
+
+Retrieve historical price data.
+
+```http
+GET /market/history/:symbol
+```
+
+**Parameters:**
+- `symbol` (required): Asset symbol (GOLD, PAXG, XAUT)
+- `timeframe` (optional): 1H, 1D, 1W, 1M (default: 1D)
+- `from` (optional): Start timestamp (ISO 8601)
+- `to` (optional): End timestamp (ISO 8601)
+- `limit` (optional): Number of records (max: 2000)
+
+**Example:**
+
+```http
+GET /market/history/GOLD?timeframe=1M&from=1978-01-01&limit=500
+```
+
+**Response:**
+
+```json
+{
+  "symbol": "GOLD",
+  "timeframe": "1M",
+  "data": [
+    {
+      "timestamp": "1978-01-01T00:00:00Z",
+      "price_usd": 178.25,
+      "open": 178.00,
+      "high": 182.50,
+      "low": 176.80,
+      "close": 178.25,
+      "volume": 0
+    },
+    {
+      "timestamp": "1978-02-01T00:00:00Z",
+      "price_usd": 181.40,
+      "open": 178.25,
+      "high": 185.20,
+      "low": 177.90,
+      "close": 181.40,
+      "volume": 0
+    }
+    // ... more records
+  ],
+  "count": 500
+}
+```
+
+### Get Trading Volume
+
+Retrieve 24h and 7d trading volumes.
+
+```http
+GET /market/volume
+```
+
+**Response:**
+
+```json
+{
+  "timestamp": "2025-12-11T10:30:00Z",
+  "global": {
+    "total_24h": 198670000000,
+    "total_7d": 1245800000000,
+    "change_24h": 3.2
+  },
+  "markets": [
+    {
+      "name": "COMEX",
+      "volume_24h": 87400000000,
+      "change_24h": 2.8
+    },
+    {
+      "name": "Shanghai Gold",
+      "volume_24h": 45200000000,
+      "change_24h": -2.1
+    }
+  ],
+  "on_chain": [
+    {
+      "token": "PAXG",
+      "volume_24h": 2847300,
+      "volume_7d": 18956200,
+      "change_24h": 5.3
+    },
+    {
+      "token": "XAUT",
+      "volume_24h": 1653800,
+      "volume_7d": 11247500,
+      "change_24h": 3.8
+    }
+  ]
+}
+```
+
+## Trading Pairs
+
+### Get All Pairs
+
+List all available trading pairs.
+
+```http
+GET /pairs
+```
+
+**Response:**
+
+```json
+{
+  "pairs": [
+    {
+      "id": "gxau_usdt",
+      "base": "gXAU",
+      "quote": "USDT",
+      "price": 2645.50,
+      "volume_24h": 890000,
+      "tvl": 8750000,
+      "fee": 0.003,
+      "apy": 52.8
+    },
+    {
+      "id": "paxg_usdt",
+      "base": "PAXG",
+      "quote": "USDT",
+      "price": 2646.12,
+      "volume_24h": 980000,
+      "tvl": 5200000,
+      "fee": 0.003,
+      "apy": 42.3
+    }
+  ]
+}
+```
+
+### Get Pair Info
+
+Get detailed information about a trading pair.
+
+```http
+GET /pairs/:pair_id
+```
+
+**Example:**
+
+```http
+GET /pairs/gxau_usdt
+```
+
+**Response:**
+
+```json
+{
+  "id": "gxau_usdt",
+  "base": "gXAU",
+  "quote": "USDT",
+  "price": 2645.50,
+  "price_24h_ago": 2633.20,
+  "change_24h": 0.47,
+  "high_24h": 2652.80,
+  "low_24h": 2631.20,
+  "volume_24h": 890000,
+  "tvl": 8750000,
+  "liquidity": {
+    "base": 3308,
+    "quote": 8750000
+  },
+  "fee": 0.003,
+  "fee_24h": 2670,
+  "apy": 52.8,
+  "lp_count": 342,
+  "updated_at": "2025-12-11T10:30:00Z"
+}
+```
+
+## Staking
+
+### Get Staking Pools
+
+List all active staking pools.
+
+```http
+GET /staking/pools
+```
+
+**Response:**
+
+```json
+{
+  "pools": [
+    {
+      "id": "gxau_90d",
+      "token": "gXAU",
+      "name": "gXAU 90-Day Stake",
+      "apy": 52.8,
+      "lock_period_days": 90,
+      "min_stake": 1.0,
+      "tvl": 12500000,
+      "stakers_count": 1245,
+      "rewards_token": "gXAU",
+      "status": "active"
+    }
+  ]
+}
+```
+
+### Get User Stakes
+
+Retrieve user's active stakes (requires authentication).
+
+```http
+GET /staking/user/:address
+```
+
+**Response:**
+
+```json
+{
+  "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
+  "stakes": [
+    {
+      "pool_id": "gxau_60d",
+      "amount": 2.5,
+      "start_date": "2025-12-11T00:00:00Z",
+      "unlock_date": "2026-02-10T00:00:00Z",
+      "earned": 0.045,
+      "apy": 42.3,
+      "daily_rate": 0.0029
+    }
+  ],
+  "total_staked_usd": 6613.75,
+  "total_earned_usd": 119.02
+}
+```
+
+## WebSocket API
+
+### Connection
+
+Connect to real-time data feed:
+
+```javascript
+const ws = new WebSocket('wss://ws.gox.exchange');
+
+ws.onopen = () => {
+  console.log('Connected to GOX WebSocket');
+};
+```
+
+### Subscribe to Channels
+
+```javascript
+// Subscribe to gold price updates
+ws.send(JSON.stringify({
+  action: 'subscribe',
+  channel: 'gold_price'
+}));
+
+// Subscribe to token updates
+ws.send(JSON.stringify({
+  action: 'subscribe',
+  channel: 'token',
+  symbol: 'PAXG'
+}));
+
+// Subscribe to trading pair
+ws.send(JSON.stringify({
+  action: 'subscribe',
+  channel: 'pair',
+  pair_id: 'gxau_usdt'
+}));
+```
+
+### Message Format
+
+**Gold Price Update:**
+
+```json
+{
+  "channel": "gold_price",
+  "type": "price_update",
+  "data": {
+    "price_usd": 2645.50,
+    "change_24h": 12.30,
+    "change_pct_24h": 0.47,
+    "timestamp": "2025-12-11T10:30:15Z"
+  }
+}
+```
+
+**Token Update:**
+
+```json
+{
+  "channel": "token",
+  "type": "price_update",
+  "data": {
+    "symbol": "PAXG",
+    "price_usd": 2646.12,
+    "change_pct_24h": 0.50,
+    "volume_24h": 2847300,
+    "timestamp": "2025-12-11T10:30:15Z"
+  }
+}
+```
+
+**Trade Update:**
+
+```json
+{
+  "channel": "pair",
+  "type": "trade",
+  "data": {
+    "pair_id": "gxau_usdt",
+    "price": 2645.50,
+    "amount": 1.5,
+    "side": "buy",
+    "timestamp": "2025-12-11T10:30:15Z"
+  }
+}
+```
+
+## Code Examples
+
+### JavaScript/TypeScript
+
+```typescript
+// Install axios
+// npm install axios
+
+import axios from 'axios';
+
+const BASE_URL = 'https://api.gox.exchange/v1';
+
+// Get gold price
+async function getGoldPrice() {
+  const response = await axios.get(`${BASE_URL}/market/gold/spot`);
+  return response.data;
+}
+
+// Get token price
+async function getTokenPrice(symbol: string) {
+  const response = await axios.get(`${BASE_URL}/market/tokens/${symbol}`);
+  return response.data;
+}
+
+// Get historical data
+async function getHistoricalPrices(symbol: string, timeframe: string = '1D') {
+  const response = await axios.get(`${BASE_URL}/market/history/${symbol}`, {
+    params: { timeframe, limit: 100 }
+  });
+  return response.data;
+}
+
+// Usage
+const gold = await getGoldPrice();
+console.log(`Gold: $${gold.price_usd}`);
+
+const paxg = await getTokenPrice('PAXG');
+console.log(`PAXG: $${paxg.price_usd} (${paxg.change_pct_24h}%)`);
+```
+
+### Python
+
+```python
+import requests
+import websocket
+import json
+
+BASE_URL = 'https://api.gox.exchange/v1'
+
+# Get gold price
+def get_gold_price():
+    response = requests.get(f'{BASE_URL}/market/gold/spot')
+    return response.json()
+
+# Get token price
+def get_token_price(symbol):
+    response = requests.get(f'{BASE_URL}/market/tokens/{symbol}')
+    return response.json()
+
+# WebSocket connection
+def on_message(ws, message):
+    data = json.loads(message)
+    print(f"Received: {data}")
+
+def on_open(ws):
+    # Subscribe to gold price
+    ws.send(json.dumps({
+        'action': 'subscribe',
+        'channel': 'gold_price'
+    }))
+
+ws = websocket.WebSocketApp(
+    'wss://ws.gox.exchange',
+    on_message=on_message,
+    on_open=on_open
+)
+
+# Usage
+gold = get_gold_price()
+print(f"Gold: ${gold['price_usd']}")
+
+paxg = get_token_price('PAXG')
+print(f"PAXG: ${paxg['price_usd']} ({paxg['change_pct_24h']}%)")
+
+# Start WebSocket
+ws.run_forever()
+```
+
+### React Hook
+
+```typescript
+import { useState, useEffect } from 'react';
+
+function useGoldPrice() {
+  const [price, setPrice] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Initial fetch
+    fetch('https://api.gox.exchange/v1/market/gold/spot')
+      .then(res => res.json())
+      .then(data => {
+        setPrice(data);
+        setLoading(false);
+      });
+
+    // WebSocket for real-time updates
+    const ws = new WebSocket('wss://ws.gox.exchange');
+    
+    ws.onopen = () => {
+      ws.send(JSON.stringify({
+        action: 'subscribe',
+        channel: 'gold_price'
+      }));
+    };
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.channel === 'gold_price') {
+        setPrice(prev => ({ ...prev, ...data.data }));
+      }
+    };
+
+    return () => ws.close();
+  }, []);
+
+  return { price, loading };
+}
+
+// Usage in component
+function GoldPrice() {
+  const { price, loading } = useGoldPrice();
+
+  if (loading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h2>Gold Price</h2>
+      <p>${price.price_usd}</p>
+      <p>{price.change_pct_24h}% (24h)</p>
+    </div>
+  );
+}
+```
+
+## Error Handling
+
+### HTTP Status Codes
+
+| Code | Meaning |
+|------|---------|
+| 200 | Success |
+| 400 | Bad Request - Invalid parameters |
+| 401 | Unauthorized - Invalid API key |
+| 404 | Not Found - Resource doesn't exist |
+| 429 | Too Many Requests - Rate limit exceeded |
+| 500 | Internal Server Error |
+| 503 | Service Unavailable - Maintenance |
+
+### Error Response Format
+
+```json
+{
+  "error": {
+    "code": "INVALID_SYMBOL",
+    "message": "Token symbol 'INVALID' not found",
+    "details": {
+      "supported_symbols": ["GOLD", "PAXG", "XAUT", "gXAU"]
+    }
+  },
+  "timestamp": "2025-12-11T10:30:15Z"
+}
+```
+
+## Rate Limiting
+
+Headers in response:
+
+```http
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 95
+X-RateLimit-Reset: 1702298460
+```
+
+When rate limited:
+
+```json
+{
+  "error": {
+    "code": "RATE_LIMIT_EXCEEDED",
+    "message": "Rate limit exceeded. Try again in 45 seconds",
+    "retry_after": 45
+  }
+}
+```
+
+## Changelog
+
+### v1.0.0 (2025-12-11)
+- Initial API release
+- Market data endpoints
+- WebSocket support
+- Historical price data from 1978
+
+### Coming Soon
+- Trading endpoints
+- Order management
+- Portfolio analytics
+- Advanced charting data
+
+## Support
+
+Need API help?
+
+- **Documentation**: [api.gox.exchange/docs](https://api.gox.exchange/docs)
+- **Discord**: [Developer chat](https://discord.gg/gox-dev)
+- **Email**: api@gox.exchange
+- **Status**: [status.gox.exchange](https://status.gox.exchange)

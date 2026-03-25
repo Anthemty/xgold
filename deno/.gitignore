@@ -1,0 +1,10 @@
+# 环境变量
+.env
+.env.local
+
+# Deno
+.deno/
+deno.lock
+
+# 系统文件
+.DS_Store

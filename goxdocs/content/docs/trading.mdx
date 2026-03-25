@@ -1,0 +1,503 @@
+---
+title: Trading Guide
+description: Learn how to trade gold-backed tokens on GOX
+---
+
+# Trading Guide
+
+Master the art of trading gold-backed digital assets on GOX with this comprehensive guide.
+
+## Understanding Gold Tokens
+
+### PAXG (Pax Gold)
+
+**Issuer**: Paxos Trust Company  
+**Backing**: 1 token = 1 troy ounce (31.1g) physical gold  
+**Storage**: London Good Delivery bars in Brink's vaults  
+**Chain**: Ethereum (ERC-20)  
+**Redeemable**: Yes (minimum 1 oz)  
+**Audited**: Monthly attestations by third-party auditors
+
+**Key Features**:
+- Lowest fees for redemption
+- Highest liquidity
+- Regulated by NYDFS
+- Insured storage
+
+### XAUT (Tether Gold)
+
+**Issuer**: TG Commodities Limited (Tether)  
+**Backing**: 1 token = 1 troy ounce physical gold  
+**Storage**: Swiss vaults (LBMA-approved)  
+**Chain**: Ethereum, Tron (multi-chain)  
+**Redeemable**: Yes (minimum 50 oz)  
+**Audited**: Quarterly attestations
+
+**Key Features**:
+- Multi-chain support
+- Lower premiums
+- Tether ecosystem integration
+- Swiss storage jurisdiction
+
+### gXAU (GOX Gold)
+
+**Status**: Coming Q1 2026  
+**Backing**: 1 token = 1 troy ounce physical gold  
+**Chain**: Multi-chain (Ethereum, Arbitrum, Polygon)  
+**Redeemable**: Yes (minimum 1 oz)
+
+**Planned Features**:
+- Lowest trading fees
+- Native GOX ecosystem
+- Governance rights
+- Staking rewards
+
+## Trading Pairs
+
+### Primary Pairs
+
+| Pair | Liquidity | 24h Volume | Fee |
+|------|-----------|------------|-----|
+| PAXG/USDT | $5.2M | $980K | 0.3% |
+| XAUT/USDT | $3.8M | $653K | 0.3% |
+| gXAU/USDT | Coming Soon | - | 0.25% |
+| PAXG/XAUT | $1.2M | $145K | 0.3% |
+
+### Base Currencies
+
+- **USDT**: Most liquid, preferred for large trades
+- **USDC**: Alternative stablecoin, similar liquidity
+- **ETH**: Direct ETH pairs for DeFi integration
+- **WBTC**: BTC-to-gold hedging
+
+## Trading Strategies
+
+### 1. Buy and Hold
+
+**Goal**: Long-term gold exposure  
+**Time Horizon**: 6-24 months  
+**Risk**: Low to Medium
+
+**Strategy**:
+```plaintext
+1. Buy PAXG/XAUT during market dips
+2. Hold through market cycles
+3. Monitor gold spot price trends
+4. Sell during price peaks
+```
+
+**Best For**: Investors seeking gold hedge against inflation
+
+### 2. Premium Arbitrage
+
+**Goal**: Profit from token premium differences  
+**Time Horizon**: 1-7 days  
+**Risk**: Low
+
+**Strategy**:
+```plaintext
+1. Monitor PAXG vs XAUT premium to spot gold
+2. Buy token trading at discount
+3. Sell token trading at premium
+4. Repeat when spreads widen
+```
+
+**Example**:
+```plaintext
+Gold Spot:  $2,645.00
+PAXG:       $2,646.50 (+0.06% premium)
+XAUT:       $2,644.20 (-0.03% discount)
+
+Action: Buy XAUT, Sell PAXG
+Profit: 0.09% spread ($2.30 per oz)
+```
+
+### 3. Swing Trading
+
+**Goal**: Capture short-term price movements  
+**Time Horizon**: 1-14 days  
+**Risk**: Medium
+
+**Strategy**:
+```plaintext
+1. Use technical analysis (RSI, MACD, MA)
+2. Buy on oversold conditions (RSI < 30)
+3. Sell on overbought conditions (RSI > 70)
+4. Set stop-loss at -3%
+5. Take profit at +5-10%
+```
+
+**Technical Indicators**:
+- **Moving Averages**: 20-day, 50-day, 200-day
+- **RSI**: Relative Strength Index
+- **Volume**: Confirm breakouts
+- **Support/Resistance**: Key price levels
+
+### 4. Dollar-Cost Averaging (DCA)
+
+**Goal**: Reduce timing risk  
+**Time Horizon**: 12-36 months  
+**Risk**: Low
+
+**Strategy**:
+```plaintext
+1. Set monthly investment amount ($500-5000)
+2. Buy PAXG/XAUT on same day each month
+3. Ignore short-term price movements
+4. Accumulate over time
+5. Rebalance annually
+```
+
+**Example Schedule**:
+```plaintext
+Day 1 of month: Buy $1,000 PAXG
+Average cost:   $2,628/oz over 12 months
+vs. Lump sum:   $2,645/oz (higher entry)
+```
+
+## Order Types
+
+### Market Order
+
+**Execution**: Immediate  
+**Price**: Current market price  
+**Best For**: Fast execution, liquid pairs
+
+```typescript
+// Market Order Example
+{
+  type: 'market',
+  side: 'buy',
+  amount: 1.0, // 1 PAXG
+  pair: 'PAXG/USDT'
+}
+```
+
+**Pros**:
+- Instant execution
+- Guaranteed fill
+- Simple to use
+
+**Cons**:
+- Price slippage on large orders
+- No price control
+- Higher costs in volatile markets
+
+### Limit Order (Coming Soon)
+
+**Execution**: When price reaches target  
+**Price**: Your specified price  
+**Best For**: Patient traders, better prices
+
+```typescript
+// Limit Order Example
+{
+  type: 'limit',
+  side: 'buy',
+  amount: 1.0,
+  price: 2640.00, // Target price
+  pair: 'PAXG/USDT'
+}
+```
+
+**Pros**:
+- Price control
+- Better execution
+- Lower costs
+
+**Cons**:
+- May not fill
+- Requires patience
+- Price monitoring needed
+
+## Advanced Trading
+
+### Slippage Settings
+
+Control maximum price deviation:
+
+- **0.1%**: Low slippage, may fail in volatile markets
+- **0.5%**: Standard setting for most trades
+- **1.0%**: Higher tolerance for large orders
+- **2.0%**: Maximum for urgent trades only
+
+### Gas Optimization
+
+Save on transaction costs:
+
+```plaintext
+Network Comparison:
+- Ethereum: $5-50 per trade (peak: $100+)
+- Arbitrum: $0.50-5 per trade
+- Polygon: $0.01-0.50 per trade
+
+Recommendation:
+- Small trades (<$1000): Use Arbitrum/Polygon
+- Large trades (>$10000): Ethereum is acceptable
+```
+
+### MEV Protection
+
+Protect against front-running:
+
+1. **Use Private RPC**: Submit transactions privately
+2. **Flashbots**: MEV-protected transactions
+3. **Limit Orders**: Avoid market orders during volatility
+4. **Split Orders**: Break large trades into smaller chunks
+
+## Risk Management
+
+### Position Sizing
+
+Never risk more than you can afford to lose:
+
+```plaintext
+Portfolio Allocation:
+- Conservative: 5-10% in gold tokens
+- Moderate: 10-20% in gold tokens
+- Aggressive: 20-30% in gold tokens
+
+Per Trade Risk:
+- Max 5% of portfolio per trade
+- Use stop-losses at -3% to -5%
+- Take profits at +5% to +15%
+```
+
+### Stop-Loss Strategies
+
+Protect your capital:
+
+```plaintext
+1. Fixed Percentage:
+   Entry: $2,645
+   Stop: $2,512 (-5%)
+   
+2. ATR-Based:
+   ATR: $45
+   Stop: Entry - (2 × ATR)
+   
+3. Support Level:
+   Support: $2,600
+   Stop: $2,580 (below support)
+```
+
+### Portfolio Diversification
+
+Don't put all eggs in one basket:
+
+```plaintext
+Sample Portfolio:
+- 40% PAXG (most liquid)
+- 30% XAUT (alternative exposure)
+- 20% gXAU (when launched)
+- 10% Stablecoins (dry powder)
+```
+
+## Market Analysis
+
+### Fundamental Analysis
+
+Key factors affecting gold prices:
+
+1. **Macro Economic**:
+   - Inflation rates
+   - Interest rates (Fed policy)
+   - USD strength
+   - Geopolitical tensions
+
+2. **Supply & Demand**:
+   - Central bank purchases
+   - Mining production
+   - Jewelry demand
+   - Industrial usage
+
+3. **Market Sentiment**:
+   - Risk-on vs risk-off
+   - VIX (fear index)
+   - Crypto market correlation
+
+### Technical Analysis
+
+Use GOX's advanced charts:
+
+```plaintext
+Key Indicators:
+- SMA 50/200: Trend direction
+- RSI: Overbought/oversold
+- MACD: Momentum shifts
+- Bollinger Bands: Volatility
+- Volume: Confirm moves
+```
+
+### On-Chain Analytics
+
+Monitor blockchain metrics:
+
+- **Holder Count**: Growing adoption
+- **Large Transactions**: Whale activity
+- **Exchange Flows**: Buying/selling pressure
+- **TVL**: Total Value Locked in pools
+
+## Trading Fees
+
+### Swap Fees
+
+```plaintext
+Standard Pools:
+- PAXG/USDT: 0.3%
+- XAUT/USDT: 0.3%
+- gXAU/USDT: 0.25% (coming soon)
+
+Low-Fee Pools (0.05%):
+- Stablecoin pairs
+- Large liquidity providers
+```
+
+### Network Fees
+
+Gas costs by network:
+
+| Network | Swap Cost | Transfer Cost |
+|---------|-----------|---------------|
+| Ethereum | $5-50 | $3-20 |
+| Arbitrum | $0.50-5 | $0.20-2 |
+| Polygon | $0.01-0.50 | $0.01-0.10 |
+
+### Redemption Fees
+
+Physical gold redemption:
+
+- **PAXG**: 1% redemption fee + shipping
+- **XAUT**: 0.25% transfer fee (min 50 oz)
+- **gXAU**: 0.5% redemption (coming soon)
+
+## Trading Psychology
+
+### Emotional Discipline
+
+1. **Don't FOMO**: Avoid chasing pumps
+2. **Cut Losses**: Accept small losses early
+3. **Take Profits**: Lock in gains systematically
+4. **Stay Calm**: Don't panic during dips
+5. **Be Patient**: Wait for setups
+
+### Common Mistakes
+
+❌ **Over-trading**: Too many unnecessary trades  
+✅ **Solution**: Set daily/weekly trade limits
+
+❌ **Revenge Trading**: Trying to recover losses  
+✅ **Solution**: Take breaks after losses
+
+❌ **Ignoring Fees**: Not accounting for gas + fees  
+✅ **Solution**: Calculate total costs before trading
+
+❌ **No Plan**: Trading without strategy  
+✅ **Solution**: Write trading plan and follow it
+
+## Trade Examples
+
+### Example 1: Simple Swap
+
+```plaintext
+Goal: Convert USDT to PAXG
+
+Input:  5,000 USDT
+Rate:   $2,645 per PAXG
+Fee:    0.3% ($15)
+Gas:    $8
+Output: 1.885 PAXG
+
+Total Cost: $5,023
+Effective Price: $2,665.20/oz (including fees)
+```
+
+### Example 2: Arbitrage Trade
+
+```plaintext
+Opportunity: PAXG premium vs XAUT
+
+Step 1: Buy XAUT
+- Buy 2 XAUT @ $2,644 = $5,288
+
+Step 2: Swap to PAXG
+- Swap 2 XAUT → 1.998 PAXG
+
+Step 3: Sell PAXG
+- Sell 1.998 PAXG @ $2,646 = $5,287.01
+
+Profit: $5,287 - $5,288 - fees = Break-even
+(Need wider spread for profit)
+```
+
+### Example 3: DCA Strategy
+
+```plaintext
+Plan: Buy $1,000 PAXG monthly for 12 months
+
+Month 1:  Buy @ $2,645 = 0.378 PAXG
+Month 2:  Buy @ $2,680 = 0.373 PAXG
+Month 3:  Buy @ $2,620 = 0.382 PAXG
+...
+Month 12: Buy @ $2,710 = 0.369 PAXG
+
+Total:    4.524 PAXG for $12,000
+Avg Cost: $2,652/oz
+Current:  $2,710/oz
+Profit:   +2.2% ($264)
+```
+
+## Best Practices
+
+### Pre-Trade Checklist
+
+- [ ] Check current gold spot price
+- [ ] Compare PAXG vs XAUT premium
+- [ ] Review recent price action
+- [ ] Check gas fees on Ethereum Gas Tracker
+- [ ] Verify wallet balance + gas funds
+- [ ] Set appropriate slippage (0.5-1%)
+- [ ] Calculate total costs (fees + gas)
+
+### Post-Trade Review
+
+- [ ] Record entry price
+- [ ] Note transaction hash
+- [ ] Update portfolio tracker
+- [ ] Set price alerts
+- [ ] Review trade performance monthly
+- [ ] Adjust strategy based on results
+
+## Tools & Resources
+
+### Market Data
+- GOX Market Page: Real-time prices
+- TradingView: Advanced charts
+- CoinGecko: Token data
+- Dune Analytics: On-chain metrics
+
+### Portfolio Tracking
+- DeBank: Multi-chain portfolio
+- Zapper: DeFi positions
+- Zerion: Wallet analytics
+
+### Gas Trackers
+- Ethereum Gas Tracker
+- L2 Fees (Arbitrum/Polygon)
+
+## Next Steps
+
+<Cards>
+  <Card title="Staking Guide" href="/docs/staking" />
+  <Card title="Liquidity Pools" href="/docs/liquidity" />
+  <Card title="API Reference" href="/docs/api" />
+  <Card title="FAQ" href="/docs/faq" />
+</Cards>
+
+## Support
+
+Need help with trading?
+
+- **Discord**: [Trading chat](https://discord.gg/gox)
+- **Telegram**: [Trading group](https://t.me/GOXTrading)
+- **Email**: trading@gox.exchange

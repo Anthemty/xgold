@@ -1,0 +1,10 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-net --allow-env --allow-read --unstable-cron --watch main.ts",
+    "start": "deno run --allow-net --allow-env --allow-read --unstable-cron main.ts",
+    "test": "deno run --allow-net --allow-env --allow-read test.ts"
+  },
+  "imports": {
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2"
+  }
+}

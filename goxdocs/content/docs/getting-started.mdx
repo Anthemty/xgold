@@ -1,0 +1,288 @@
+---
+title: Getting Started
+description: Start trading gold-backed tokens on GOX in minutes
+---
+
+# Getting Started with GOX
+
+This guide will help you start trading gold-backed digital assets on GOX in just a few minutes.
+
+## Prerequisites
+
+Before you begin, you'll need:
+- A Web3 wallet (MetaMask, WalletConnect, Coinbase Wallet)
+- Some ETH for gas fees
+- Funds to trade (USDT, USDC, or ETH)
+
+## Step 1: Connect Your Wallet
+
+### Using MetaMask
+
+1. Visit [gox.exchange](https://gox.exchange)
+2. Click **"Connect Wallet"** in the top right
+3. Select **MetaMask** from the wallet options
+4. Approve the connection request in MetaMask
+5. Your wallet address will appear in the navbar
+
+### Using WalletConnect
+
+1. Click **"Connect Wallet"**
+2. Select **WalletConnect**
+3. Scan the QR code with your mobile wallet
+4. Approve the connection
+
+### Supported Wallets
+
+- MetaMask
+- WalletConnect
+- Coinbase Wallet
+- Trust Wallet
+- Rainbow Wallet
+- Ledger (via MetaMask)
+
+## Step 2: Add Funds
+
+You can fund your wallet with:
+
+### Option A: Buy Crypto with Fiat
+1. Use the built-in fiat on-ramp
+2. Click **"Buy Crypto"**
+3. Enter amount and payment method
+4. Complete KYC verification (if required)
+
+### Option B: Transfer from Exchange
+1. Withdraw USDT, USDC, or ETH from your CEX
+2. Use **Ethereum mainnet** or **Arbitrum**
+3. Copy your wallet address from GOX
+4. Initiate withdrawal from exchange
+5. Wait for confirmation (5-30 minutes)
+
+## Step 3: Your First Trade
+
+### Swap Tokens
+
+Navigate to the **Swap** page:
+
+```
+gox.exchange/swap
+```
+
+1. **Select Input Token**: Choose USDT, USDC, or ETH
+2. **Enter Amount**: Type how much you want to swap
+3. **Select Output Token**: Choose PAXG or XAUT
+4. **Review Details**:
+   - Exchange rate
+   - Price impact
+   - Gas fees
+   - Estimated output
+5. **Click "Swap"**
+6. **Confirm Transaction** in your wallet
+7. Wait for confirmation (usually 1-3 minutes)
+
+### Example Swap
+
+```plaintext
+Input:  1,000 USDT
+Output: 0.378 PAXG (~$1,000 worth)
+Rate:   1 PAXG = $2,645.50
+Fee:    0.3% ($3.00)
+Gas:    ~$5-10 (depends on network)
+```
+
+## Step 4: Explore Features
+
+### View Market Data
+
+Check real-time gold prices and analytics:
+
+```
+gox.exchange/market
+```
+
+- Live gold spot price (XAU/USD)
+- Historical charts from 1978
+- Token comparison (PAXG vs XAUT)
+- 24h trading volume
+- Market trends
+
+### Explore Liquidity Pools
+
+Find trading pairs and APY:
+
+```
+gox.exchange/explore
+```
+
+Available pools:
+- **gXAU-USDT**: 52.8% APY
+- **gXAU-PAXG**: 38.5% APY
+- **PAXG-USDT**: 42.3% APY
+
+### Stake Tokens
+
+Earn yields on your gold tokens:
+
+```
+gox.exchange/stake
+```
+
+Staking options:
+- **30 Days**: 38.5% APY
+- **60 Days**: 42.3% APY
+- **90 Days**: 52.8% APY
+
+## Step 5: Add Gold Tokens to Wallet
+
+To see your tokens in MetaMask:
+
+### Add PAXG
+
+1. Open MetaMask
+2. Click **"Import tokens"**
+3. Enter contract address:
+   ```
+   0x45804880De22913dAFE09f4980848ECE6EcbAf78
+   ```
+4. Token symbol: `PAXG`
+5. Decimals: `18`
+6. Click **"Add Custom Token"**
+
+### Add XAUT
+
+1. Click **"Import tokens"**
+2. Enter contract address:
+   ```
+   0x68749665FF8D2d112Fa859AA293F07A622782F38
+   ```
+3. Token symbol: `XAUT`
+4. Decimals: `6`
+5. Click **"Add Custom Token"**
+
+## Network Configuration
+
+### Ethereum Mainnet
+
+- **Network Name**: Ethereum Mainnet
+- **RPC URL**: `https://eth.llamarpc.com`
+- **Chain ID**: `1`
+- **Currency**: ETH
+- **Explorer**: `https://etherscan.io`
+
+### Arbitrum One
+
+- **Network Name**: Arbitrum One
+- **RPC URL**: `https://arb1.arbitrum.io/rpc`
+- **Chain ID**: `42161`
+- **Currency**: ETH
+- **Explorer**: `https://arbiscan.io`
+
+### Polygon
+
+- **Network Name**: Polygon Mainnet
+- **RPC URL**: `https://polygon-rpc.com`
+- **Chain ID**: `137`
+- **Currency**: MATIC
+- **Explorer**: `https://polygonscan.com`
+
+## Trading Tips
+
+### Best Practices
+
+1. **Start Small**: Begin with a small test transaction
+2. **Check Gas Fees**: Trade during low-traffic hours (UTC 2-8 AM)
+3. **Set Slippage**: Use 0.5-1% slippage for stable trades
+4. **Monitor Premium**: Check PAXG/XAUT premium to gold spot
+5. **Use Limit Orders**: Coming soon for better price execution
+
+### Understanding Premiums
+
+Gold tokens may trade at a premium/discount to spot gold:
+
+```plaintext
+Gold Spot:  $2,645.00/oz
+PAXG Price: $2,646.12 (+0.04% premium)
+XAUT Price: $2,644.85 (-0.01% discount)
+```
+
+Premium factors:
+- Token liquidity
+- Market demand
+- Redemption fees
+- Storage costs
+
+### Gas Optimization
+
+Save on gas fees:
+
+1. **Batch Transactions**: Combine multiple swaps
+2. **Use Arbitrum**: 10x cheaper than Ethereum
+3. **Off-Peak Hours**: Lower gas during weekends
+4. **Set Gas Limit**: Manual gas settings in MetaMask
+5. **Use Fast**: Avoid "Slow" gas options
+
+## Security Checklist
+
+✅ **Before Trading**:
+- [ ] Wallet connected to correct network
+- [ ] Sufficient ETH for gas fees
+- [ ] Verified contract addresses
+- [ ] Checked current gas prices
+- [ ] Set appropriate slippage
+
+✅ **During Trading**:
+- [ ] Review transaction details carefully
+- [ ] Verify token amounts
+- [ ] Check exchange rate
+- [ ] Confirm in wallet
+- [ ] Wait for confirmation
+
+✅ **After Trading**:
+- [ ] Verify tokens in wallet
+- [ ] Check transaction on explorer
+- [ ] Record transaction hash
+- [ ] Update portfolio tracking
+
+## Common Issues
+
+### Transaction Failed
+
+**Cause**: Insufficient gas or slippage too low
+
+**Solution**:
+1. Increase gas limit by 20%
+2. Set slippage to 1-2%
+3. Try again with fresh gas estimate
+
+### Token Not Showing
+
+**Cause**: Token not imported to wallet
+
+**Solution**:
+1. Manually add token contract address
+2. Check correct network (Ethereum/Arbitrum)
+3. Refresh wallet
+
+### High Price Impact
+
+**Cause**: Large trade size or low liquidity
+
+**Solution**:
+1. Split into smaller trades
+2. Use different pool
+3. Wait for better liquidity
+
+## Next Steps
+
+<Cards>
+  <Card title="Trading Guide" href="/docs/trading" />
+  <Card title="Staking Tutorial" href="/docs/staking" />
+  <Card title="Liquidity Pools" href="/docs/liquidity" />
+  <Card title="API Documentation" href="/docs/api" />
+</Cards>
+
+## Need Help?
+
+- **Discord**: [Join our community](https://discord.gg/gox)
+- **Telegram**: [GOX Support](https://t.me/GOXExchange)
+- **Email**: support@gox.exchange
+- **FAQ**: [View common questions](/docs/faq)

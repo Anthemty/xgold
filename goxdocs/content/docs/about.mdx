@@ -1,0 +1,181 @@
+---
+title: About GOX
+description: Mission, Vision, and Platform Architecture
+---
+
+# About GOX
+
+## Our Mission
+
+GOX aims to democratize access to gold investment by combining the stability of physical gold with the innovation of blockchain technology. We bridge traditional finance and decentralized finance (DeFi) to make gold investment accessible to everyone, everywhere.
+
+## Vision
+
+To become the world's leading decentralized exchange for gold-backed digital assets and Real World Assets (RWA), providing:
+- **Transparency**: Real-time on-chain verification of all transactions
+- **Accessibility**: 24/7 global access to gold markets
+- **Security**: Non-custodial solutions with audited smart contracts
+- **Efficiency**: Instant settlement with minimal fees
+
+## What Makes GOX Different?
+
+### Specialized Gold DEX
+Unlike general-purpose DEXs, GOX is specifically optimized for gold-backed assets:
+- Real-time gold spot price integration
+- Historical price data from 1978
+- Premium/discount tracking for tokenized gold
+- Specialized liquidity pools for gold tokens
+
+### RWA Focus
+We support the entire ecosystem of Real World Assets:
+- Physical gold tokenization
+- Detection, custody & audit services
+- RWA issuance & listing support
+- Derivatives & OTC trading
+
+### Multi-Chain Support
+GOX operates on multiple blockchain networks:
+- **Ethereum**: Primary network for PAXG and XAUT
+- **Arbitrum**: Low-fee Layer 2 solution
+- **Polygon**: Fast and scalable transactions
+
+## Platform Architecture
+
+### Frontend Layer
+- Next.js 15 with App Router
+- React 18 with TypeScript
+- TailwindCSS for responsive UI
+- Reown AppKit for wallet integration
+
+### Data Layer
+- **Supabase**: PostgreSQL database with real-time subscriptions
+- **Metals.dev API**: Gold spot price data
+- **CoinGecko API**: Token market data
+- **Blockscout API**: On-chain holder count
+
+### Smart Contracts
+- ERC-20 token standards
+- Uniswap V2/V3 liquidity pools
+- Custom staking contracts
+- Audited by leading security firms
+
+### Key Integrations
+
+```typescript
+// Gold Price Feed
+const goldPrice = await fetchGoldPrice();
+// Returns: { price: 2645.50, timestamp: "2025-12-11T00:00:00Z" }
+
+// Token Data
+const paxgData = await fetchTokenPrice('PAXG');
+// Returns: { price: 2646.12, volume_24h: 2847300, ... }
+
+// Real-time Updates via Supabase
+supabase
+  .channel('gold-price-updates')
+  .on('postgres_changes', { table: 'market_data' }, handler)
+  .subscribe();
+```
+
+## Supported Assets
+
+### Primary Gold Tokens
+
+| Token | Name | Backing | Chain | Contract |
+|-------|------|---------|-------|----------|
+| PAXG | Pax Gold | 1 oz gold | Ethereum | `0x45804880...` |
+| XAUT | Tether Gold | 1 oz gold | Ethereum | `0x68749665...` |
+| gXAU | GOX Gold | 1 oz gold | Multi-chain | Coming Soon |
+
+### Base Pairs
+- USDT (Tether USD)
+- USDC (USD Coin)
+- ETH (Ethereum)
+- WBTC (Wrapped Bitcoin)
+
+## Market Data
+
+GOX provides comprehensive market analytics:
+
+### Real-Time Metrics
+- **Gold Spot Price**: Live XAU/USD pricing
+- **24h Change**: Price movement tracking
+- **Market Cap**: Total market capitalization
+- **Trading Volume**: 24h and 7d volumes
+- **Liquidity Depth**: Available liquidity per pair
+
+### Historical Data
+- Monthly gold prices from 1978 to present
+- Price history for all supported tokens
+- Volume trends and market cycles
+- Token premium/discount analysis
+
+## Security & Compliance
+
+### Smart Contract Security
+- Audited by CertiK and other top firms
+- Multi-signature controls
+- Time-locked upgrades
+- Emergency pause mechanisms
+
+### Gold Custody
+- Insured physical gold reserves
+- Third-party audits and attestations
+- Vault storage in secure facilities
+- Regular compliance reporting
+
+### User Security
+- Non-custodial wallet integration
+- No KYC for basic trading
+- Encrypted data transmission
+- Open-source smart contracts
+
+## Roadmap
+
+### Q4 2025 ✓
+- ✅ Platform launch
+- ✅ PAXG/XAUT support
+- ✅ Real-time market data
+- ✅ Basic swap functionality
+
+### Q1 2026
+- 🚧 gXAU token launch
+- 🚧 Staking program v1
+- 🚧 Liquidity mining
+- 🚧 Mobile app
+
+### Q2 2026
+- ⏳ Options & derivatives
+- ⏳ OTC trading desk
+- ⏳ Advanced charting tools
+- ⏳ Portfolio analytics
+
+### Q3 2026
+- ⏳ Multi-chain expansion
+- ⏳ NFT gold certificates
+- ⏳ Physical redemption
+- ⏳ Institutional platform
+
+## Team
+
+GOX is built by a team of blockchain engineers, DeFi experts, and gold market specialists with experience from:
+- Leading cryptocurrency exchanges
+- Traditional gold trading firms
+- Smart contract development
+- Financial technology companies
+
+## Contact & Community
+
+- **Website**: [gox.exchange](https://gox.exchange)
+- **Twitter**: [@GOXExchange](https://twitter.com/GOXExchange)
+- **Discord**: [Join our community](https://discord.gg/gox)
+- **Telegram**: [GOX Official](https://t.me/GOXExchange)
+- **Email**: support@gox.exchange
+
+## Open Source
+
+GOX is committed to transparency and open-source development:
+- Smart contracts on GitHub
+- Frontend code available
+- API documentation
+- Community contributions welcome

@@ -1,0 +1,417 @@
+---
+title: Staking & Farming
+description: Earn yields on your gold-backed tokens
+---
+
+# Staking & Farming
+
+Earn passive income on your gold-backed tokens through GOX's staking and liquidity farming programs.
+
+## Overview
+
+GOX offers multiple ways to earn yields:
+
+- **Single-Asset Staking**: Stake PAXG, XAUT, or gXAU to earn rewards
+- **Liquidity Farming**: Provide liquidity to pools and earn trading fees + rewards
+- **Lock Staking**: Higher APY for longer lock periods
+- **Flexible Staking**: Unstake anytime with lower APY
+
+## Single-Asset Staking
+
+### How It Works
+
+1. Deposit your gold tokens into staking contract
+2. Earn rewards in same token or GOX governance token
+3. Rewards accrue daily and compound automatically
+4. Withdraw anytime (flexible) or after lock period
+
+### Staking Pools
+
+| Pool | APY | Lock Period | Min. Stake | Rewards |
+|------|-----|-------------|------------|---------|
+| gXAU Flexible | 28.5% | None | 0.1 gXAU | gXAU |
+| gXAU 30-Day | 38.5% | 30 days | 0.1 gXAU | gXAU + GOX |
+| gXAU 60-Day | 42.3% | 60 days | 0.5 gXAU | gXAU + GOX |
+| gXAU 90-Day | 52.8% | 90 days | 1.0 gXAU | gXAU + GOX |
+| PAXG 30-Day | 35.2% | 30 days | 0.1 PAXG | PAXG |
+| XAUT 30-Day | 33.8% | 30 days | 0.1 XAUT | XAUT |
+
+### Staking Tutorial
+
+#### Step 1: Navigate to Stake Page
+
+```
+https://gox.exchange/stake
+```
+
+#### Step 2: Choose Pool
+
+Select a staking pool based on:
+- Lock period you're comfortable with
+- APY (longer lock = higher yield)
+- Minimum stake requirement
+- Reward token preference
+
+#### Step 3: Enter Amount
+
+```plaintext
+Example:
+- Token: gXAU
+- Amount: 2.5 gXAU
+- Lock: 60 days
+- APY: 42.3%
+
+Expected Rewards:
+Daily:  0.0029 gXAU ($7.67)
+60-Day: 0.174 gXAU ($460.20)
+Annual: 1.058 gXAU ($2,800)
+```
+
+#### Step 4: Approve & Stake
+
+1. Click **"Approve gXAU"**
+2. Confirm approval transaction
+3. Click **"Stake"**
+4. Confirm staking transaction
+5. View your position in **"My Stakes"**
+
+#### Step 5: Monitor & Claim
+
+```plaintext
+Your Position:
+- Staked: 2.5 gXAU
+- Start: Dec 11, 2025
+- Unlock: Feb 10, 2026
+- Earned: 0.045 gXAU ($119.02)
+- Daily Rate: 0.0029 gXAU
+```
+
+Actions:
+- **Claim Rewards**: Withdraw earned rewards
+- **Compound**: Reinvest rewards automatically
+- **Unstake**: Withdraw after lock period
+
+## Liquidity Farming
+
+### What is Liquidity Farming?
+
+Provide liquidity to trading pairs and earn:
+1. **Trading Fees**: 0.3% of all swaps (distributed to LPs)
+2. **Farm Rewards**: Additional GOX token rewards
+3. **Price Appreciation**: Potential upside of both tokens
+
+### Active Farms
+
+| Pair | TVL | APY | Daily Rewards | Fee APY |
+|------|-----|-----|---------------|---------|
+| gXAU-USDT | $8.75M | 52.8% | 450 GOX | 12.5% |
+| gXAU-PAXG | $6.2M | 38.5% | 320 GOX | 8.3% |
+| PAXG-USDT | $5.2M | 42.3% | 280 GOX | 10.2% |
+| XAUT-USDT | $3.8M | 35.7% | 210 GOX | 7.8% |
+
+### Liquidity Farming Tutorial
+
+#### Step 1: Add Liquidity
+
+Navigate to **Explore** page:
+
+```
+https://gox.exchange/explore
+```
+
+1. Select trading pair (e.g., gXAU-USDT)
+2. Click **"Add Liquidity"**
+3. Enter amounts for both tokens
+4. Review pool share and price impact
+5. Confirm transaction
+
+```plaintext
+Example:
+Token A: 1.0 gXAU ($2,645)
+Token B: 2,645 USDT
+Pool Share: 0.03%
+LP Tokens: 51.42
+```
+
+#### Step 2: Stake LP Tokens
+
+1. Go to **Stake** page
+2. Find LP farm (gXAU-USDT)
+3. Click **"Stake LP"**
+4. Enter LP token amount
+5. Approve and stake
+
+#### Step 3: Earn Rewards
+
+Your LP position earns:
+
+```plaintext
+Daily Breakdown:
+- Trading Fees: $8.50 (0.32% daily)
+- Farm Rewards: 12 GOX ($18.00)
+- Total Daily: $26.50
+- Annual: $9,672 (52.8% APY)
+
+On $2,645 investment:
+Monthly: $116
+Yearly: $1,397
+```
+
+#### Step 4: Manage Position
+
+Actions available:
+- **Compound**: Reinvest rewards
+- **Harvest**: Claim GOX rewards
+- **Add More**: Increase position
+- **Remove**: Withdraw liquidity
+
+### Impermanent Loss
+
+⚠️ **Important**: Liquidity providers face impermanent loss risk.
+
+**What is IL?**
+
+When token prices diverge, your LP position may be worth less than holding tokens separately.
+
+**Example**:
+
+```plaintext
+Initial:
+- Add 1 gXAU @ $2,645 + 2,645 USDT
+- Total Value: $5,290
+
+Scenario 1: gXAU +20% to $3,174
+- Your LP: 0.913 gXAU + 2,898 USDT = $5,796
+- Just HODLing: 1 gXAU + 2,645 USDT = $5,819
+- IL: -$23 (-0.4%)
+
+Scenario 2: gXAU +100% to $5,290
+- Your LP: 0.707 gXAU + 3,741 USDT = $7,482
+- Just HODLing: 1 gXAU + 2,645 USDT = $7,935
+- IL: -$453 (-5.7%)
+```
+
+**Mitigation**:
+- Farm stable pairs (USDT-USDC): no IL
+- Choose pairs with similar price movement (gXAU-PAXG)
+- Earn fees + rewards to offset IL
+- Short time horizons reduce IL risk
+
+## Advanced Strategies
+
+### Strategy 1: Compound Staking
+
+Maximize returns through compounding:
+
+```plaintext
+Simple vs Compound (1 gXAU, 52.8% APY):
+
+Daily Compounding:
+- Day 1: 1.0014 gXAU
+- Day 30: 1.0441 gXAU
+- Day 365: 1.6932 gXAU (69.3% effective APY)
+
+No Compounding:
+- Day 365: 1.528 gXAU (52.8% APY)
+
+Extra Profit: 0.1652 gXAU ($437)
+```
+
+**How to Compound**:
+1. Set auto-compound in settings (if available)
+2. Or manually compound weekly
+3. Gas fees reduce small position gains
+
+**Optimal Frequency**:
+- Position < $1,000: Compound monthly
+- Position $1,000-10,000: Compound weekly  
+- Position > $10,000: Compound daily
+
+### Strategy 2: Ladder Staking
+
+Spread risk across lock periods:
+
+```plaintext
+$10,000 Portfolio Split:
+
+- $2,500 → Flexible (28.5% APY)
+- $2,500 → 30-Day (38.5% APY)
+- $2,500 → 60-Day (42.3% APY)
+- $2,500 → 90-Day (52.8% APY)
+
+Weighted APY: 40.5%
+Annual Yield: $4,050
+Liquidity: Some funds unlock every 30 days
+```
+
+### Strategy 3: Dual Yield
+
+Combine staking + farming:
+
+```plaintext
+$10,000 Strategy:
+
+50% Single Staking:
+- $5,000 gXAU in 90-day stake
+- Earn: 52.8% APY = $2,640/year
+
+50% LP Farming:
+- $5,000 in gXAU-USDT pool
+- Earn: 52.8% APY = $2,640/year
+- Risk: Impermanent loss exposure
+
+Total Yield: $5,280/year (52.8% blended)
+Risk Level: Moderate (half exposed to IL)
+```
+
+### Strategy 4: Arbitrage Farming
+
+Farm different networks for higher yields:
+
+```plaintext
+Multi-Chain Comparison:
+
+Ethereum:
+- Gas: $30-50 per transaction
+- APY: 52.8%
+- Best for: Large positions (>$10,000)
+
+Arbitrum:
+- Gas: $1-3 per transaction
+- APY: 48.5% (slightly lower)
+- Best for: Medium positions ($1,000-10,000)
+
+Polygon:
+- Gas: $0.10-0.50 per transaction
+- APY: 45.2% (lowest)
+- Best for: Small positions (<$1,000)
+```
+
+## Risks & Considerations
+
+### Smart Contract Risk
+
+- Audited by CertiK and other top firms
+- $5M+ bug bounty program
+- Time-locked upgrades (48 hours)
+- Multi-signature controls
+- Insurance fund: $2M coverage
+
+### Market Risk
+
+- Gold price volatility
+- Token premium/discount changes
+- Liquidation risk (if borrowing)
+- Impermanent loss (LP farming)
+
+### Lock-Up Risk
+
+- Funds locked for selected period
+- No early withdrawal
+- Opportunity cost if prices spike
+- Consider flexible pools for short-term
+
+## Reward Calculations
+
+### Single Staking Formula
+
+```typescript
+dailyReward = (stakedAmount * APY) / 365
+annualReward = stakedAmount * APY
+
+// Example: 2 gXAU @ 52.8% APY
+dailyReward = (2 * 0.528) / 365 = 0.00289 gXAU
+annualReward = 2 * 0.528 = 1.056 gXAU
+```
+
+### LP Farming Formula
+
+```typescript
+// Trading Fee APY
+feeAPY = (dailyVolume * feeRate * 365) / TVL
+
+// Farm Reward APY
+farmAPY = (dailyGOXRewards * GOXPrice * 365) / TVL
+
+// Total APY
+totalAPY = feeAPY + farmAPY
+
+// Example: gXAU-USDT Pool
+feeAPY = ($980,000 * 0.003 * 365) / $8,750,000 = 12.2%
+farmAPY = (450 * $15 * 365) / $8,750,000 = 28.1%
+totalAPY = 40.3%
+```
+
+## Tax Implications
+
+⚠️ **Disclaimer**: Consult a tax professional. This is not tax advice.
+
+### US Tax Treatment
+
+**Staking Rewards**:
+- Taxed as ordinary income when received
+- Basis = FMV at receipt time
+- Capital gains on appreciation when sold
+
+**LP Fees**:
+- Trading fees may be ordinary income
+- Adding/removing liquidity can be taxable events
+- Impermanent loss may not be deductible until realized
+
+**Record Keeping**:
+- Track all stake/unstake transactions
+- Record reward claim dates and values
+- Log LP additions/removals
+- Use crypto tax software (Koinly, CoinTracker)
+
+## FAQ
+
+### Can I unstake early?
+
+**Flexible pools**: Yes, anytime with no penalty  
+**Lock pools**: No, must wait until lock period ends
+
+### When are rewards distributed?
+
+Rewards accrue every block (~12 seconds) and are:
+- Auto-compounded (if enabled)
+- Claimable anytime
+- Distributed continuously, not in batches
+
+### What happens to rewards during unstaking?
+
+Rewards are automatically:
+1. Calculated up to unstake time
+2. Claimed to your wallet
+3. No rewards lost
+
+### Can I add to an existing stake?
+
+Yes:
+- Flexible pools: Add anytime
+- Lock pools: Starts new lock period from addition date
+
+### How do I maximize APY?
+
+1. Choose longest lock period you're comfortable with
+2. Enable auto-compounding
+3. Add to position during market dips
+4. Combine staking + farming for dual yields
+5. Move to higher APY pools when available
+
+## Next Steps
+
+<Cards>
+  <Card title="Liquidity Pools" href="/docs/liquidity" />
+  <Card title="GOX Token" href="/docs/gox-token" />
+  <Card title="Trading Guide" href="/docs/trading" />
+  <Card title="API Reference" href="/docs/api" />
+</Cards>
+
+## Support
+
+Questions about staking?
+
+- **Discord**: [Staking help](https://discord.gg/gox)
+- **Telegram**: [Staking group](https://t.me/GOXStaking)
+- **Email**: staking@gox.exchange
